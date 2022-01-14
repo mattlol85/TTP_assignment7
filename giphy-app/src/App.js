@@ -2,7 +2,7 @@ import './App.css';
 import Footer from './Footer'
 import Navbar from './Navbar';
 import SearchField from './SearchField';
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {My_Api_key} from "./config"
 
 function App() {
@@ -10,31 +10,28 @@ function App() {
 
   const [gifs, setGifs] = useState(null)
 
-  const [searchForGifs, setSearchForGifs] = useState(false)
+    async function getRandom(){
+        await fetch(`http://api.giphy.com/v1/gifs/random?api_key=${My_Api_key.key}`)
+            .then(res => res.json()).then(obj => setGifs(obj))
+    }
+    async function getSearched(){
+      await fetch( `http://api.giphy.com/v1/gifs/search?q=${searchInput}&api_key=${My_Api_key.key}`)
+    }
 
-  const randomUrl = `http://api.giphy.com/v1/gifs/random?api_key=${My_Api_key.key}`
-
-  useEffect(() => {
-      fetch(randomUrl).then(res => res.json()).then(obj => setGifs(obj))
-    },[randomUrl])
 
   const getInput = (data) =>{
     setSearchInput(data)
   }
-  if(gifs) {
+  console.log(gifs)
     return (
         <div>
           <Navbar/>
           <SearchField inputFunc={getInput}/>
-          <button>Search</button>
-          <button>Random</button>
+          <button onClick={getSearched}>Search</button>
+          <button onClick={getRandom}>Random</button>
           <Footer/>
         </div>
     );
   }
-  return(
-      <h2>Nothing to see here</h2>
-  )
-}
 
 export default App;
