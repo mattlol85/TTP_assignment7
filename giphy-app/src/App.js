@@ -14,11 +14,19 @@ function App() {
     async function getRandom() {
         return await fetch(`http://api.giphy.com/v1/gifs/random?api_key=${My_Api_key.key}`)
             .then(res => res.json()).then(obj => setGifs(obj))
+        
     }
 
     async function getSearched() {
         return await fetch(`http://api.giphy.com/v1/gifs/search?q=${searchInput}&api_key=${My_Api_key.key}`)
             .then(res => res.json()).then(obj => setGifs(obj))
+
+    }
+
+    async function getTrending(){
+        return await fetch(`http://api.giphy.com/v1/gifs/trending?api_key=${My_Api_key.key}`)
+            .then(res => res.json()).then(obj => setGifs(obj))
+
     }
 
 
@@ -32,6 +40,7 @@ function App() {
                 <SearchField inputFunc={getInput}/>
                 <button onClick={getSearched}>Search</button>
                 <button onClick={getRandom}>Random</button>
+                <button onClick={getTrending}>Trending</button>
                 <GifCard gif={gifs}/>
                 <Footer/>
             </div>
@@ -43,6 +52,7 @@ function App() {
             <SearchField inputFunc={getInput}/>
             <button onClick={getSearched}>Search</button>
             <button onClick={getRandom}>Random</button>
+            <button onClick={getTrending}>Trending</button>
             <Footer/>
         </div>
     )
