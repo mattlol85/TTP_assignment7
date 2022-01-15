@@ -2,8 +2,8 @@ import './App.css';
 import Footer from './Footer'
 import Navbar from './Navbar';
 import SearchField from './SearchField';
-import {useCallback, useEffect, useState} from "react";
-import {My_Api_key} from "./config"
+import { useState } from "react";
+import { My_Api_key } from "./config"
 import GifCard from "./GifCard.js"
 
 function App() {
@@ -18,13 +18,13 @@ function App() {
     }
 
     async function getSearched() {
-         await fetch(`http://api.giphy.com/v1/gifs/search?q=${searchInput}&api_key=${My_Api_key.key}`)
+        await fetch(`http://api.giphy.com/v1/gifs/search?q=${searchInput}&api_key=${My_Api_key.key}`)
             .then(res => res.json()).then(obj => setGifs(obj))
 
     }
 
-    async function getTrending(){
-         await fetch(`http://api.giphy.com/v1/gifs/trending?api_key=${My_Api_key.key}`)
+    async function getTrending() {
+        await fetch(`http://api.giphy.com/v1/gifs/trending?api_key=${My_Api_key.key}`)
             .then(res => res.json()).then(obj => setGifs(obj))
 
     }
@@ -33,29 +33,36 @@ function App() {
     const getInput = (data) => {
         setSearchInput(data)
     }
-    
+
     console.log(gifs)
     if (gifs) {
         return (
             <div>
-                <Navbar/>
-                <SearchField inputFunc={getInput}/>
-                <button onClick={getSearched}>Search</button>
-                <button onClick={getRandom}>Random</button>
-                <button onClick={getTrending}>Trending</button>
-                <GifCard gif={gifs}/>
-                <Footer/>
+                <Navbar />
+                <br/>
+                <SearchField inputFunc={getInput} />
+
+                <div className="buttonDiv">
+                    <button className='btn' onClick={getSearched}>Search</button>
+                    <button className='btn' onClick={getRandom}>Random</button>
+                    <button className='btn' onClick={getTrending}>Trending</button>
+                </div>
+                <GifCard gif={gifs} />
+                <Footer />
             </div>
         );
     }
-    return(
+    return (
         <div>
-            <Navbar/>
-            <SearchField inputFunc={getInput}/>
-            <button onClick={getSearched}>Search</button>
-            <button onClick={getRandom}>Random</button>
-            <button onClick={getTrending}>Trending</button>
-            <Footer/>
+            <Navbar />
+            <br/>
+            <SearchField inputFunc={getInput} />
+            <div className="buttonDiv">
+                <button className='btn' onClick={getSearched}>Search</button>
+                <button className='btn' onClick={getRandom}>Random</button>
+                <button className='btn' onClick={getTrending}>Trending</button>
+            </div>
+            <Footer />
         </div>
     )
 }
