@@ -12,19 +12,19 @@ function App() {
     const [gifs, setGifs] = useState(null)
 
     async function getRandom() {
-        return await fetch(`http://api.giphy.com/v1/gifs/random?api_key=${My_Api_key.key}`)
+        await fetch(`http://api.giphy.com/v1/gifs/random?api_key=${My_Api_key.key}`)
             .then(res => res.json()).then(obj => setGifs(obj))
-        
+
     }
 
     async function getSearched() {
-        return await fetch(`http://api.giphy.com/v1/gifs/search?q=${searchInput}&api_key=${My_Api_key.key}`)
+         await fetch(`http://api.giphy.com/v1/gifs/search?q=${searchInput}&api_key=${My_Api_key.key}`)
             .then(res => res.json()).then(obj => setGifs(obj))
 
     }
 
     async function getTrending(){
-        return await fetch(`http://api.giphy.com/v1/gifs/trending?api_key=${My_Api_key.key}`)
+         await fetch(`http://api.giphy.com/v1/gifs/trending?api_key=${My_Api_key.key}`)
             .then(res => res.json()).then(obj => setGifs(obj))
 
     }
@@ -33,6 +33,7 @@ function App() {
     const getInput = (data) => {
         setSearchInput(data)
     }
+    console.log(gifs)
     if (gifs) {
         return (
             <div>

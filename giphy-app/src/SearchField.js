@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 
 
 export default function SearchField(props){
-    const [search, setSearch] = useState(1234)
+    const [search, setSearch] = useState("")
     useEffect(() =>{
         props.inputFunc(search)
     })
