@@ -3,7 +3,7 @@ Don't worry, the key is free to get.
 
 Use this format in the config.js file:
 
-        export const My_Api_key = { key:"insert your api key here")
+        export const My_Api_key = { key:"insert your api key here }
 
 
 import the key to your App.js folder with:
