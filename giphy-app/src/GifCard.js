@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import './GifCard.css'
 
 
 
@@ -10,9 +11,9 @@ export default function GifCard(props) {
     })
     return (
 
-        <div>
+      <div className="gif-card">
             {Array.isArray(gifprop.data) ? gifprop.data.map(elm => <img src={elm.images.original.url}/>) :
-                <img src={gifprop.data.images.original.url}/>}
+                <img src={gifprop.data.images.original.url} className="gif"/>}
         </div>
     )
 }

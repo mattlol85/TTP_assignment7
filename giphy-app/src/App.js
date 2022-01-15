@@ -33,6 +33,7 @@ function App() {
     const getInput = (data) => {
         setSearchInput(data)
     }
+    
     console.log(gifs)
     if (gifs) {
         return (
